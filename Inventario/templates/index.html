@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+  <title>Arcón Azul</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS v5.2.1 -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  
+
+
+</head>
+
+<body class = "container mt-5" style="background-color: #292feb28;">
+  
+    <div class = " alert alert-info display-2 text-center">
+        <b>ArconAzul</b>
+    </div>
+
+    <h4>Inventario Para Restaurant</h4>
+    
+    <div class="row">
+      <div class="col-4">
+        <div class = "card border-success">
+          <div class = "card-body">
+
+            <form method = "POST">
+
+              {% csrf_token %}
+              {{form.as_p}}
+              <button type="submit" class="btn btn-primary">Agregar Producto</button>
+              
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+      <div class="col-8">
+        
+        {% if productos %}
+
+        <div class="table-responsive">
+            <table class="table table-bordered border-dark table-secondary table-hover text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Area</th>
+                        <th scope="col">Stock</th>
+                        <th scope="col">Acción</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for p in productos %}
+                      <tr class="table table-bordered border-dark">
+                          <td scope="row">{{p.id}}</td>
+                          <td>{{p.nombre}}</td>
+                          <td>{{p.area}}</td>
+                          <td>{{p.stock}}</td>
+                          <td>
+                              
+                                  
+                                
+                              <a name = "" id = "" class = "btn btn-sm btn-primary" href = "editar/{{p.id}}" role = "button"><i class="bi bi-pencil-fill"></i></a>
+                              <a name = "" id = "" class = "btn btn-sm btn-danger" href = "delete/{{p.id}}" role = "button"><i class="bi bi-trash3-fill"></i></a>
+                          </td>
+                      </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class = "alert alert-warning">No hay productos en el inventario</div>
+        </div>
+        {% endif %}
+
+
+      </div>
+    </div>
+
+    
+
+    <footer>
+        <div class = " alert alert-secondary text-center mt-5"><b>Todos los derechos reservados</b></div>
+    </footer>
+
+
+  <!-- Bootstrap JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+    integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+  </script>
+</body>
+
+</html>
